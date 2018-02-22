@@ -10,15 +10,12 @@ class Ramps
     @nap=nap
     @runs=runs
 
-    rot, gruen, blau, nap, runs =nil
-
     def sin_loop()
+      rot, gruen, blau, nap, runs =nil
       index = 0
       nachunten = false
 
-
       @runs.times do
-
         if index < @col_rArr.size
           if nachunten != true
             index +=1
@@ -60,13 +57,12 @@ class Ramps
           end
         end
         uri = URI.parse("http://192.168.4.1/solidColor?r="+"#{@col_r}"+"&g="+"#{@col_g}"+"&b="+"#{@col_b}")
-        header = {'Content-Type' : 'text/json'}
+        header = {'Content-Type' => 'text/json'}
         #color = "/solidColor?r=255&g=255&b=255"
         # Create the HTTP objects
         http = Net::HTTP.new(uri.host, uri.port)
         request = Net::HTTP::Post.new(uri.request_uri, header)
         response = http.request(request)
-
         sleep(@nap)
         puts uri
       end
@@ -75,6 +71,5 @@ class Ramps
     sin_loop()
   end
 end
-
 
 
